@@ -5,12 +5,13 @@ class App extends React.Component {
       currentVideo: window.exampleVideoData[0],
       videoList: window.exampleVideoData
     };
+    this.state.videoList.onVideoClick = this.onVideoClick.bind(this);
   }
-
-  onVideoClick (event) {
-    console.log('CLICKED!');
+ 
+  onVideoClick (clickedVideo) {
+    console.log('What is this', this);
     this.setState({
-      currentVideo: window.exampleVideoData[0], //set the clicked video to the current video
+      currentVideo: clickedVideo, //set the clicked video to the current video
       videoList: window.exampleVideoData
     });
   }
