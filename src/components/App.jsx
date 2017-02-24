@@ -5,18 +5,16 @@ class App extends React.Component {
       currentVideo: window.exampleVideoData[0],
       videoList: window.exampleVideoData
     };
-    this.state.videoList.onVideoClick = this.onVideoClick.bind(this);
   }
  
   onVideoClick (clickedVideo) {
     this.setState({
-      currentVideo: clickedVideo,
-      videoList: window.exampleVideoData
+      currentVideo: clickedVideo
     });
   }
 
   componentDidMount() {
-    this.getYouTubeVideos('Rich asians winston');
+    this.getYouTubeVideos('Hack Reactor');
   }
 
   getYouTubeVideos (query) {
@@ -33,6 +31,7 @@ class App extends React.Component {
         currentVideo: videoList[0],
         videoList: videoList
       });
+      this.state.videoList.onVideoClick = this.onVideoClick.bind(this);
     });
   }
 
@@ -44,7 +43,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.videoList}/>
+          <VideoList videos={this.state.videoList} onVideoClick={this.onVideoClick.bind(this)}/>
         </div>
       </div>
     );
