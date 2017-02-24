@@ -5,6 +5,7 @@ class App extends React.Component {
       currentVideo: window.exampleVideoData[0],
       videoList: window.exampleVideoData
     };
+    this.getYouTubeVideos = _.debounce(this.getYouTubeVideos, 500);
   }
  
   onVideoClick (clickedVideo) {
@@ -31,7 +32,6 @@ class App extends React.Component {
         currentVideo: videoList[0],
         videoList: videoList
       });
-      this.state.videoList.onVideoClick = this.onVideoClick.bind(this);
     });
   }
 
