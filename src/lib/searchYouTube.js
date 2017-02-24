@@ -1,5 +1,5 @@
 var searchYouTube = (options, callback) => {
-  $.get('https://googleapis.com/youtube/v4/search', {
+  $.get('https://www.googleapis.com/youtube/v3/search', {
     part: 'snippet',
     key: options.key,
     q: options.query,
@@ -7,13 +7,14 @@ var searchYouTube = (options, callback) => {
     type: 'video',
     videoEmbeddable: 'true'
   })
-
   .done((data) => {
+    console.log('data.items', data.items);
     if (callback) {
       callback(data.items);
     }
   })
   .fail(({responseJSON}) => {
+    console.log('responseJSON', responseJSON);
     responseJSON.error.errors.forEach((err) => console.error(err));
   });
 };

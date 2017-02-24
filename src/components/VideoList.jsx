@@ -1,5 +1,4 @@
 var VideoList = (props) => {
-  console.log(props);
   return (
     <div className="video-list media">
       {props.videos.map(video => 

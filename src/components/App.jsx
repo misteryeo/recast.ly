@@ -9,15 +9,14 @@ class App extends React.Component {
   }
  
   onVideoClick (clickedVideo) {
-    console.log('What is this', this);
     this.setState({
-      currentVideo: clickedVideo, //set the clicked video to the current video
+      currentVideo: clickedVideo,
       videoList: window.exampleVideoData
     });
   }
 
   componentDidMount() {
-    this.getYouTubeVideos('React');
+    this.getYouTubeVideos('Rich asians winston');
   }
 
   getYouTubeVideos (query) {
@@ -26,8 +25,10 @@ class App extends React.Component {
       query: query,
       max: 5
     };
-
-    this.props.searchYouTube (options, (videoList) => {
+    console.log(this.props.searchYouTube);
+    console.log(query);
+    this.props.searchYouTube(options, (videoList) => {
+      console.log(videoList);
       this.setState({
         currentVideo: videoList[0],
         videoList: videoList
@@ -36,11 +37,9 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this);
-    console.log(this.state.currentVideo);
     return (
       <div>
-        <Nav />
+        <Nav handleSearchInputChange={this.getYouTubeVideos.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
