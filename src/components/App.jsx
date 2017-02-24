@@ -16,6 +16,25 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.getYouTubeVideos('React');
+  }
+
+  getYouTubeVideos (query) {
+    var options = {
+      key: this.props.API_KEY,
+      query: query,
+      max: 5
+    };
+
+    this.props.searchYouTube (options, (videoList) => {
+      this.setState({
+        currentVideo: videoList[0],
+        videoList: videoList
+      });
+    });
+  }
+
   render() {
     console.log(this);
     console.log(this.state.currentVideo);
